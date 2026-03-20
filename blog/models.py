@@ -6,7 +6,7 @@ class Category(models.Model):
     slug = models.SlugField()
 
     class Meta:
-        ordering = ("title")
+        ordering = ("title",)
         verbose_name_plural = "categories"
 
         def __str__(self):
@@ -36,7 +36,7 @@ class Post(models.Model):
         return self.title
     
 class Comment(models.Model):
-    post = models.ForeignKey(post, related_name="comments", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     email = models.EmailField()
     body = models.TextField()
